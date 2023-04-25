@@ -1,6 +1,11 @@
 :root {
-    --section-back: black;
+    --section-back: rgb(255, 226, 146);
     --app-back: white;
+    --input-back: rgb(236, 236, 236);
+    --submit-btn-color: black;
+    --submit-btn-back: rgb(132, 216, 255);
+    --submit-btn-hover-color: white;
+    --submit-btn-hover-back: rgb(0, 174, 255);
 }
 
 *,
@@ -9,6 +14,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+    outline: 1px solid red;
+}
+
+.btn {
+    cursor: pointer;
 }
 
 .section {
@@ -20,6 +31,7 @@
 }
 
 .app {
+    border-radius: 10px;
     margin: 50px 0;
     padding: 30px 20px;
     width: 32rem;
@@ -30,7 +42,79 @@
 }
 
 .app > .title {
+    text-transform: uppercase;
     font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: 900;
+    padding: 20px 0;
+}
+
+.form {
+    display: flex;
+}
+
+.form > input {
+    width: 250px;
+    height: 30px;
+    padding-left: 20px;
+    font-size: 14px;
+    border: none;
+    letter-spacing: 1px;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--input-back);
+}
+
+.form > .btn-submit {
+    border: none;
+    height: 30px;
+    width: 90px;
+    border-radius: 0 5px 5px 0;
     letter-spacing: 2px;
-    font-weight: 700;
+    background-color: var(--submit-btn-back);
+    color: var(--submit-btn-color);
+    transition: 0.3s;
+}
+
+.form > .btn-submit:hover {
+    color: var(--submit-btn-hover-color);
+    background-color: var(--submit-btn-hover-back);
+}
+
+.content {
+    width: 340px;
+    margin: 20px 0;
+}
+
+.content > .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.content > .item > .item-name {
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 15px;
+}
+
+.content > .item > .btn-container {
+    display: flex;
+}
+
+.content > .item > .btn-container > .btn-edit {
+    color: rgb(0, 150, 0);
+    padding: 3px;
+    margin-right: 10px;
+}
+
+.content > .item > .btn-container > .btn-delete {
+    color: rgb(211, 0, 0);
+    padding: 3px;
+}
+
+.btn-container-two {
+}
+
+.btn-container-two > .btn-clear {
 }
