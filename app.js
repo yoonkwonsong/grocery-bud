@@ -1,4 +1,11 @@
+import { nanoid } from "https://cdn.jsdelivr.net/npm/nanoid/nanoid.js"
+
+const submitBtn = document.querySelector(".form > .btn-submit")
+const formInput = document.querySelector(".form > input")
+
 let groceriesList = []
+let editFlag = false
+let editId = ""
 
 window.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem("groceries")) {
@@ -13,10 +20,8 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log(groceriesList)
 })
 
-document.querySelector(".form > .btn-submit").addEventListener("click", (e) => {
+submitBtn.addEventListener("click", (e) => {
     e.preventDefault()
-
-    const formInput = document.querySelector(".form > input")
 
     if (formInput.value == "") {
         emptyAlert()
@@ -25,12 +30,36 @@ document.querySelector(".form > .btn-submit").addEventListener("click", (e) => {
         return
     }
 
-    if (formInput.value) {
-        groceriesList.push(formInput.value)
+    if (formInput.value && editFlag == false) {
+        const newObj = {
+            id: nanoid(),
+            value: formInput.value,
+        }
+
+        groceriesList.push(newObj)
         localStorage.setItem("groceries", JSON.stringify(groceriesList))
         populateItems(groceriesList)
 
         formInput.value = ""
+
+        formInput.focus()
+    }
+
+    if (formInput.value && editFlag == true) {
+        groceriesList = groceriesList.map((item) => {
+            if (item.id == editId) {
+                return { ...item, value: formInput.value }
+            } else {
+                return item
+            }
+        })
+
+        localStorage.setItem("groceries", JSON.stringify(groceriesList))
+        populateItems(groceriesList)
+
+        editFlag = false
+        formInput.value = ""
+        submitBtn.textContent = "Submit"
 
         formInput.focus()
     }
@@ -44,8 +73,8 @@ const populateItems = (itemList) => {
     const itemElements = itemList
         .map((item) => {
             return `
-            <div class="item">
-                        <h3 class="item-name">${item}</h3>
+            <article class="item" data-id=${item.id}>
+                        <h3 class="item-name">${item.value}</h3>
                         <div class="btn-container">
                             <div class="btn btn-edit">
                                 <i class="fas fa-edit"></i>
@@ -54,7 +83,7 @@ const populateItems = (itemList) => {
                                 <i class="fas fa-trash"></i>
                             </div>
                         </div>
-                    </div>
+                    </article>
             `
         })
         .join("")
@@ -66,16 +95,28 @@ const populateItems = (itemList) => {
             if (e.currentTarget.classList.contains("btn-delete")) {
                 groceriesList = groceriesList.filter(
                     (item) =>
-                        item !==
-                        btn.parentElement.parentElement.children[0].textContent
+                        item.id !== btn.parentElement.parentElement.dataset.id
                 )
 
                 localStorage.setItem("groceries", JSON.stringify(groceriesList))
                 populateItems(groceriesList)
+
+                editFlag = false
+                formInput.value = ""
+                submitBtn.textContent = "Submit"
             }
 
             if (e.currentTarget.classList.contains("btn-edit")) {
-                console.log("edit")
+                // console.log("edit")
+
+                editFlag = true
+
+                formInput.value =
+                    btn.parentElement.parentElement.children[0].textContent
+                editId = btn.parentElement.parentElement.dataset.id
+                submitBtn.textContent = "Edit"
+
+                formInput.focus()
             }
         })
     )

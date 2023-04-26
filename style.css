@@ -6,6 +6,11 @@
     --submit-btn-back: rgb(132, 216, 255);
     --submit-btn-hover-color: white;
     --submit-btn-hover-back: rgb(0, 174, 255);
+    --clear-btn-color: black;
+    --clear-btn-back: rgb(255, 166, 115);
+    --clear-btn-hover-color: white;
+    --clear-btn-hover-back: rgb(230, 126, 67);
+    --item-color: rgb(71, 71, 71);
 }
 
 *,
@@ -15,7 +20,7 @@
     margin: 0;
     box-sizing: border-box;
 
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
 }
 
 .btn {
@@ -24,7 +29,7 @@
 
 .section {
     background-color: var(--section-back);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,6 +101,7 @@
     font-weight: 500;
     letter-spacing: 2px;
     font-size: 15px;
+    color: var(--item-color);
 }
 
 .content > .item > .btn-container {
@@ -113,8 +119,24 @@
     padding: 3px;
 }
 
-.btn-container-two {
+.btn-container-clear {
+    margin-bottom: 10px;
 }
 
-.btn-container-two > .btn-clear {
+.btn-container-clear > .btn-clear {
+    color: var(--clear-btn-color);
+    background-color: var(--clear-btn-back);
+    width: 130px;
+    height: 20px;
+    border: none;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.btn-container-clear > .btn-clear:hover {
+    background-color: var(--clear-btn-hover-back);
+    color: var(--clear-btn-hover-color);
 }
