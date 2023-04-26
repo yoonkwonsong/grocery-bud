@@ -104,11 +104,11 @@ const populateItems = (itemList) => {
                 editFlag = false
                 formInput.value = ""
                 submitBtn.textContent = "Submit"
+
+                formInput.focus()
             }
 
             if (e.currentTarget.classList.contains("btn-edit")) {
-                // console.log("edit")
-
                 editFlag = true
 
                 formInput.value =
@@ -120,4 +120,23 @@ const populateItems = (itemList) => {
             }
         })
     )
+
+    if (groceriesList.length > 0) {
+        document.querySelector(".btn-container-clear").classList.add("show")
+    }
+    if (groceriesList.length == 0) {
+        document.querySelector(".btn-container-clear").classList.remove("show")
+    }
+
+    document.querySelector(".btn-clear").addEventListener("click", () => {
+        groceriesList = []
+
+        localStorage.setItem("groceries", JSON.stringify(groceriesList))
+        populateItems(groceriesList)
+
+        formInput.value = ""
+        submitBtn.textContent = "Submit"
+
+        formInput.focus()
+    })
 }

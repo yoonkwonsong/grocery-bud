@@ -121,6 +121,12 @@
 
 .btn-container-clear {
     margin-bottom: 10px;
+
+    display: none;
+}
+
+.btn-container-clear.show {
+    display: block;
 }
 
 .btn-container-clear > .btn-clear {
