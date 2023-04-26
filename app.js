@@ -60,7 +60,14 @@ const populateItems = (itemList) => {
     document.querySelectorAll(".btn").forEach((btn) =>
         btn.addEventListener("click", (e) => {
             if (e.currentTarget.classList.contains("btn-delete")) {
-                console.log("delete")
+                groceriesList = groceriesList.filter(
+                    (item) =>
+                        item !==
+                        btn.parentElement.parentElement.children[0].textContent
+                )
+
+                localStorage.setItem("groceries", JSON.stringify(groceriesList))
+                populateItems(groceriesList)
             }
         })
     )
