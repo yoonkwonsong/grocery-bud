@@ -20,6 +20,8 @@ document.querySelector(".form > .btn-submit").addEventListener("click", (e) => {
 
     if (formInput.value == "") {
         emptyAlert()
+
+        formInput.focus()
         return
     }
 
@@ -29,6 +31,8 @@ document.querySelector(".form > .btn-submit").addEventListener("click", (e) => {
         populateItems(groceriesList)
 
         formInput.value = ""
+
+        formInput.focus()
     }
 })
 
@@ -68,6 +72,10 @@ const populateItems = (itemList) => {
 
                 localStorage.setItem("groceries", JSON.stringify(groceriesList))
                 populateItems(groceriesList)
+            }
+
+            if (e.currentTarget.classList.contains("btn-edit")) {
+                console.log("edit")
             }
         })
     )
