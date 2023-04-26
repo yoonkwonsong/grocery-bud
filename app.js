@@ -65,10 +65,6 @@ submitBtn.addEventListener("click", (e) => {
     }
 })
 
-const emptyAlert = () => {
-    console.log("empty alert")
-}
-
 const populateItems = (itemList) => {
     const itemElements = itemList
         .map((item) => {
@@ -139,4 +135,13 @@ const populateItems = (itemList) => {
 
         formInput.focus()
     })
+}
+
+const emptyAlert = () => {
+    document.querySelector(".alert").classList.add("on")
+
+    const startAlert = () =>
+        document.querySelector(".alert").classList.remove("on")
+
+    setTimeout(startAlert, 2000)
 }

@@ -6,10 +6,10 @@
     --submit-btn-back: rgb(132, 216, 255);
     --submit-btn-hover-color: white;
     --submit-btn-hover-back: rgb(0, 174, 255);
-    --clear-btn-color: black;
-    --clear-btn-back: rgb(255, 166, 115);
+    --clear-btn-color: white;
+    --clear-btn-back: rgb(230, 126, 67);
     --clear-btn-hover-color: white;
-    --clear-btn-hover-back: rgb(230, 126, 67);
+    --clear-btn-hover-back: rgb(194, 71, 0);
     --item-color: rgb(71, 71, 71);
 }
 
@@ -46,12 +46,28 @@
     align-items: center;
 }
 
+.app > .alert {
+    text-align: center;
+    font-size: 12px;
+    width: 340px;
+    padding: 3px 0;
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.app > .alert.on {
+    background-color: rgb(255, 164, 122);
+}
+
 .app > .title {
     text-transform: uppercase;
     font-size: 30px;
     letter-spacing: 3px;
     font-weight: 900;
-    padding: 20px 0;
+    padding: 40px 0;
 }
 
 .form {
@@ -87,14 +103,14 @@
 
 .content {
     width: 340px;
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 .content > .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 15px 20px;
 }
 
 .content > .item > .item-name {
