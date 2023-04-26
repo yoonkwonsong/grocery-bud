@@ -5,7 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
         return
     }
     if (localStorage.getItem("groceries")) {
-        groceriesList = localStorage.getItem("groceries")
+        groceriesList = JSON.parse(localStorage.getItem("groceries"))
+
         populateItems(groceriesList)
     }
 
@@ -17,8 +18,6 @@ document.querySelector(".form > .btn-submit").addEventListener("click", (e) => {
 
     const formInput = document.querySelector(".form > input")
 
-    console.log(formInput.value)
-
     if (formInput.value == "") {
         emptyAlert()
         return
@@ -26,8 +25,10 @@ document.querySelector(".form > .btn-submit").addEventListener("click", (e) => {
 
     if (formInput.value) {
         groceriesList.push(formInput.value)
-        localStorage.setItem("groceries", groceriesList)
+        localStorage.setItem("groceries", JSON.stringify(groceriesList))
         populateItems(groceriesList)
+
+        formInput.value = ""
     }
 })
 
@@ -55,4 +56,12 @@ const populateItems = (itemList) => {
         .join("")
 
     document.querySelector(".content").innerHTML = itemElements
+
+    document.querySelectorAll(".btn").forEach((btn) =>
+        btn.addEventListener("click", (e) => {
+            if (e.currentTarget.classList.contains("btn-delete")) {
+                console.log("delete")
+            }
+        })
+    )
 }
